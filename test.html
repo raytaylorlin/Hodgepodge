@@ -3,12 +3,17 @@
 <meta charset="utf-8">
 <title>Hodgepodge Test</title>
 <script type="text/javascript" src="src/array.js"></script>
+<script type="text/javascript" src="src/browser.js"></script>
 <script type="text/javascript">
-    function log(content) {
-        var pElement = document.createElement('p'),
+    function title(content) {
+        log(content, 'h4');
+    }
+
+    function log(content, tag) {
+        var element = document.createElement(tag ? tag : 'p'),
             container = document.getElementById('result-container');
-        pElement.innerHTML = content;
-        container.appendChild(pElement);
+        element.innerHTML = content;
+        container.appendChild(element);
     }
 </script>
 </head>
@@ -18,18 +23,22 @@
 <script type="text/javascript">
     var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    log('Test Hodgepodge.array.copyArray');
+    title('Test Hodgepodge.array');
+    log('Hodgepodge.array.copyArray');
     var anotherArray = [];
     log(Hodgepodge.array.copyArray(array, anotherArray));
 
-    log('Test Hodgepodge.array.findInArray');
+    log('Hodgepodge.array.findInArray');
     var element = 5;
     log(Hodgepodge.array.findInArray(array, element));
     element = 100;
     log(Hodgepodge.array.findInArray(array, element));
 
-    log('Test Hodgepodge.array.arrayAverage');
+    log('Hodgepodge.array.arrayAverage');
     log(Hodgepodge.array.arrayAverage(array));
+
+    title('Test Hodgepodge.browser');
+    log(Hodgepodge.browser.getBrowserIdentity());
 </script>
 </body>
 </html>
