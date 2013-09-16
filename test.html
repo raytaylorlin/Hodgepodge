@@ -4,6 +4,7 @@
 <title>Hodgepodge Test</title>
 <script type="text/javascript" src="src/array.js"></script>
 <script type="text/javascript" src="src/browser.js"></script>
+<script type="text/javascript" src="src/datetime.js"></script>
 <script type="text/javascript">
     function title(content) {
         log(content, 'h4');
@@ -21,24 +22,23 @@
 <div id="result-container">
 </div>
 <script type="text/javascript">
-    var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
     title('Test Hodgepodge.array');
     log('Hodgepodge.array.copyArray');
-    var anotherArray = [];
-    log(Hodgepodge.array.copyArray(array, anotherArray));
+    log(Hodgepodge.array.copyArray([1, 2, 3, 4, 5], []));
 
     log('Hodgepodge.array.findInArray');
-    var element = 5;
-    log(Hodgepodge.array.findInArray(array, element));
-    element = 100;
-    log(Hodgepodge.array.findInArray(array, element));
+    log(Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 5));
+    log(Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 100));
 
     log('Hodgepodge.array.arrayAverage');
-    log(Hodgepodge.array.arrayAverage(array));
+    log(Hodgepodge.array.arrayAverage([1, 1, 8, 4, 5]));
 
     title('Test Hodgepodge.browser');
     log(Hodgepodge.browser.getBrowserIdentity());
+
+    title('Test Hodgepodge.datetime');
+    log(Hodgepodge.datetime.getNumberDaysInMonth(2013, 9));
+    log(Hodgepodge.datetime.isLeapYear(2013));
 </script>
 </body>
 </html>
