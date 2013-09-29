@@ -17,5 +17,65 @@ var Hodgepodge = (function(hp) {
         return props;
     };
 
+    /**
+     * Div日志记录类。该类的实例提供日志记录的功能，并显示在特定的div上
+     */
+    hp_debug.DivLogger = function() {
+        this.LEVEL_TRACE = 1;
+        this.LEVEL_DEBUG = 2;
+        this.LEVEL_INFO = 3;
+        this.LEVEL_WARN = 4;
+        this.LEVEL_ERROR = 5;
+        this.LEVEL_FATEL = 6;
+
+        this.LEVEL_TRACE_COLOR = 'a0a000';
+        this.LEVEL_DEBUG_COLOR = '64c864';
+        this.LEVEL_INFO_COLOR = '000000';
+        this.LEVEL_WARN_COLOR = '0000ff';
+        this.LEVEL_ERROR_COLOR = 'ff8c00';
+        this.LEVEL_FATEL_COLOR = 'ff0000';
+
+        this.logLevel = 3;
+        this.targetDiv = null;
+
+        /**
+         * 设置日志级别
+         * @param {Integer} level 日志级别，大于等于该级别的日志记录将被显示
+         */
+        this.setLevel = function(level) {
+            this.logLevel = level;
+        };
+
+        /**
+         * 设置要绑定的显示日志的div
+         * @param {HTMLELement} target 要绑定的显示日志的div
+         */
+        this.setTargetDiv = function(target) {
+            this.targetDiv = target;
+            this.targetDiv.innerHTML = '';
+        };
+
+        /**
+         * 判断给定的日志级别时候应该被显示
+         * @param  {Integer} level 日志级别
+         * @return {Boolean} 给定的日志级别时候应该被显示
+         */
+        this.shouldBeLogged = function(level) {
+            return level >= this.logLevel;
+        };
+
+        /**
+         * 显示跟踪级别的日志
+         * @param  {String} message 日志内容
+         */
+        this.trace = function(message) {
+            if (this.shouldBeLogged(this.logLevel) && this.targetDiv) {
+                this.targetDiv.innerHTML +=
+                    "<div style='color:#'" + this.LEVEL_TRACE_COLOR + ";'>" +
+                    "[TRACE] " + message + "</div>";
+            }
+        };
+    };
+
     return hp;
 }(Hodgepodge || {}));
