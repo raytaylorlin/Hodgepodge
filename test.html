@@ -6,6 +6,7 @@
 <script type="text/javascript" src="src/browser.js"></script>
 <script type="text/javascript" src="src/datetime.js"></script>
 <script type="text/javascript" src="src/debug.js"></script>
+<script type="text/javascript" src="src/lang.js"></script>
 <script type="text/javascript">
     function title(content) {
         log(content, 'h4');
@@ -16,6 +17,7 @@
             container = document.getElementById('result-container');
         element.innerHTML = content;
         container.appendChild(element);
+        return element;
     }
 </script>
 </head>
@@ -64,6 +66,14 @@
     logger.warn('WARN log.');
     logger.error('Oops, ERROR!');
     logger.fatel('F***, FATEL!');
+
+    title('Test Hodgepodge.lang');
+    log('Hodgepodge.lang.copyProperties({foo: 321, bar: "hehe"}, {foo: 123}, true)');
+    var newObj = Hodgepodge.lang.copyProperties({foo: 321, bar: "hehe"}, {foo: 123}, true);
+    var langDiv = document.createElement('div');
+    container.appendChild(langDiv);
+    logger.setTargetDiv(langDiv);
+    logger.info(Hodgepodge.debug.enumProps(newObj));
 
 </script>
 </body>
