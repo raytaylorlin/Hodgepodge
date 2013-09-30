@@ -24,21 +24,40 @@ var Hodgepodge = (function(hp) {
     hp_debug.DivLogger = function(targetDiv) {
         this.targetDiv = targetDiv;
         this.logLevel = 3;
+    };
 
-        this.LEVEL_TRACE = 1;
-        this.LEVEL_DEBUG = 2;
-        this.LEVEL_INFO = 3;
-        this.LEVEL_WARN = 4;
-        this.LEVEL_ERROR = 5;
-        this.LEVEL_FATEL = 6;
-
-        this.LEVEL_TRACE_COLOR = 'a0a000';
-        this.LEVEL_DEBUG_COLOR = '64c864';
-        this.LEVEL_INFO_COLOR = '000000';
-        this.LEVEL_WARN_COLOR = '0000ff';
-        this.LEVEL_ERROR_COLOR = 'ff8c00';
-        this.LEVEL_FATEL_COLOR = 'ff0000';
-   };
+    hp_debug.DivLogger.prototype.LOG_LEVEL_MAP = {
+        trace: {
+            level: 1,
+            color: '#27ae60',
+            tag: '[TRACE]'
+        },
+        debug: {
+            level: 2,
+            color: '#34495e',
+            tag: '[DEBUG]'
+        },
+        info: {
+            level: 3,
+            color: '#3498db',
+            tag: '[INFO]'
+        },
+        warn: {
+            level: 4,
+            color: '#f1c40f',
+            tag: '[WARN]'
+        },
+        error: {
+            level: 5,
+            color: '#e67e22',
+            tag: '[ERROR]'
+        },
+        fatel: {
+            level: 6,
+            color: '#c0392b',
+            tag: '[FATEL]'
+        },
+    };
 
     /**
      * 设置日志级别
@@ -67,16 +86,27 @@ var Hodgepodge = (function(hp) {
     };
 
     /**
-     * 显示跟踪级别的日志
+     * 显示各种级别的日志
      * @param  {String} message 日志内容
      */
-    hp_debug.DivLogger.prototype.trace = function(message) {
-        if (this.shouldBeLogged(this.logLevel) && this.targetDiv) {
-            this.targetDiv.innerHTML +=
-                "<div style='color:#" + this.LEVEL_TRACE_COLOR + ";'>" +
-                "[TRACE] " + message + "</div>";
-        }
-    };
+    hp_debug.DivLogger.prototype.trace = logFuncFacotry('trace');
+    hp_debug.DivLogger.prototype.debug = logFuncFacotry('debug');
+    hp_debug.DivLogger.prototype.info = logFuncFacotry('info');
+    hp_debug.DivLogger.prototype.warn = logFuncFacotry('warn');
+    hp_debug.DivLogger.prototype.error = logFuncFacotry('error');
+    hp_debug.DivLogger.prototype.fatel = logFuncFacotry('fatel');
+
+    //显示级别日志的方法工厂
+    function logFuncFacotry(logLevelName) {
+        var logLevelInfo = hp_debug.DivLogger.prototype.LOG_LEVEL_MAP[logLevelName];
+        return function(message) {
+            if (this.shouldBeLogged(logLevelInfo.level) && this.targetDiv) {
+                this.targetDiv.innerHTML +=
+                    "<div style='color:" + logLevelInfo.color + ";'>" +
+                    logLevelInfo.tag + " " + message + "</div>";
+            }
+        };
+    }
 
     return hp;
 }(Hodgepodge || {}));

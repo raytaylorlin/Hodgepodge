@@ -23,38 +23,47 @@
 <div id="result-container">
 </div>
 <script type="text/javascript">
+    //测试array包
     title('Test Hodgepodge.array');
-    log('Hodgepodge.array.copyArray');
+    log('Hodgepodge.array.copyArray([1, 2, 3, 4, 5], [])');
     log(Hodgepodge.array.copyArray([1, 2, 3, 4, 5], []));
 
-    log('Hodgepodge.array.findInArray');
+    log('Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 5)');
     log(Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 5));
-    log(Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 100));
 
-    log('Hodgepodge.array.arrayAverage([1, 1, 8, 4, 5]');
+    log('Hodgepodge.array.arrayAverage([1, 1, 8, 4, 5])');
     log(Hodgepodge.array.arrayAverage([1, 1, 8, 4, 5]));
 
+    //测试browser包
     title('Test Hodgepodge.browser');
-    log('Hodgepodge.browser.getBrowserIdentity')
+    log('Hodgepodge.browser.getBrowserIdentity()')
     log(Hodgepodge.browser.getBrowserIdentity());
 
+    //测试datetime包
     title('Test Hodgepodge.datetime');
     log('Hodgepodge.datetime.getNumberDaysInMonth(2013, 9)')
     log(Hodgepodge.datetime.getNumberDaysInMonth(2013, 9));
     log('Hodgepodge.datetime.isLeapYear(2013)');
     log(Hodgepodge.datetime.isLeapYear(2013));
 
+    //测试debug包
     title('Test Hodgepodge.debug');
-    log('Hodgepodge.debug.enumProps');
+    log('Hodgepodge.debug.enumProps(document.location)');
     log(Hodgepodge.debug.enumProps(document.location));
+
     log('Hodgepodge.debug.DivLogger');
     var debugInfoDiv = document.createElement('div'),
         container = document.getElementById('result-container'),
         logger;
     container.appendChild(debugInfoDiv);
     logger = new Hodgepodge.debug.DivLogger(debugInfoDiv);
-
-    logger.trace('This is a trace log.');
+    logger.setLevel(1);
+    logger.trace('Trace something.');
+    logger.debug('Debug something.');
+    logger.info('This is a info log.');
+    logger.warn('WARN log.');
+    logger.error('Oops, ERROR!');
+    logger.fatel('F***, FATEL!');
 
 </script>
 </body>
