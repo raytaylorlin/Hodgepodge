@@ -5,6 +5,7 @@
 <script type="text/javascript" src="src/array.js"></script>
 <script type="text/javascript" src="src/browser.js"></script>
 <script type="text/javascript" src="src/datetime.js"></script>
+<script type="text/javascript" src="src/debug.js"></script>
 <script type="text/javascript">
     function title(content) {
         log(content, 'h4');
@@ -30,15 +31,31 @@
     log(Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 5));
     log(Hodgepodge.array.findInArray([1, 2, 3, 4, 5], 100));
 
-    log('Hodgepodge.array.arrayAverage');
+    log('Hodgepodge.array.arrayAverage([1, 1, 8, 4, 5]');
     log(Hodgepodge.array.arrayAverage([1, 1, 8, 4, 5]));
 
     title('Test Hodgepodge.browser');
+    log('Hodgepodge.browser.getBrowserIdentity')
     log(Hodgepodge.browser.getBrowserIdentity());
 
     title('Test Hodgepodge.datetime');
+    log('Hodgepodge.datetime.getNumberDaysInMonth(2013, 9)')
     log(Hodgepodge.datetime.getNumberDaysInMonth(2013, 9));
+    log('Hodgepodge.datetime.isLeapYear(2013)');
     log(Hodgepodge.datetime.isLeapYear(2013));
+
+    title('Test Hodgepodge.debug');
+    log('Hodgepodge.debug.enumProps');
+    log(Hodgepodge.debug.enumProps(document.location));
+    log('Hodgepodge.debug.DivLogger');
+    var debugInfoDiv = document.createElement('div'),
+        container = document.getElementById('result-container'),
+        logger;
+    container.appendChild(debugInfoDiv);
+    logger = new Hodgepodge.debug.DivLogger(debugInfoDiv);
+
+    logger.trace('This is a trace log.');
+
 </script>
 </body>
 </html>
