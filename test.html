@@ -8,6 +8,7 @@
 <script type="text/javascript" src="src/debug.js"></script>
 <script type="text/javascript" src="src/lang.js"></script>
 <script type="text/javascript" src="src/math.js"></script>
+<script type="text/javascript" src="src/storage.js"></script>
 <script type="text/javascript">
     function title(content) {
         log(content, 'h4');
@@ -79,6 +80,11 @@
     title('Test Hodgepodge.math');
     log('Hodgepodge.math.getRandomNumber(3, 50)');
     log(Hodgepodge.math.getRandomNumber(3, 50));
+
+    title('Test Hodgepodge.storage');
+    log('Hodgepodge.storage.setCookie("Hodgepodge", "Hodgepodge.storage-cookie")');
+    Hodgepodge.storage.setCookie('Hodgepodge', '12345');
+    log(Hodgepodge.storage.getCookie('Hodgepodge'));
 
 </script>
 </body>

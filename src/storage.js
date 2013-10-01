@@ -11,6 +11,10 @@ var Hodgepodge = (function(hp) {
     hp_storage.setCookie = function(key, value, expiry) {
         if (typeof expiry === 'Date') {
             expiry = expiry.toGMTString();
+        } else if (expiry === undefined) {
+            expiry = new Date();
+            expiry.setDate(expiry.getDate() + 1);
+            expiry = expiry.toGMTString();
         }
         document.cookie = key + '=' + escape(value) + ';expires=' + expiry;
     };
