@@ -16,11 +16,23 @@ module.exports = function(grunt) {
         jshint: {
             //定义用于检测的文件
             files: ['gruntfile.js', 'src/*.js']
+        },
+        uglify: {
+            options: {
+                //生成一个banner注释并插入到输出文件的顶部
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+            },
+            dist: {
+                files: {
+                    'release/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['jshint', 'concat']);
+    grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };
