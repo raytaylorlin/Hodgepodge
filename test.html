@@ -2,13 +2,8 @@
 <head>
 <meta charset="utf-8">
 <title>Hodgepodge Test</title>
-<script type="text/javascript" src="src/array.js"></script>
-<script type="text/javascript" src="src/browser.js"></script>
-<script type="text/javascript" src="src/datetime.js"></script>
-<script type="text/javascript" src="src/debug.js"></script>
-<script type="text/javascript" src="src/lang.js"></script>
-<script type="text/javascript" src="src/math.js"></script>
-<script type="text/javascript" src="src/storage.js"></script>
+<script type="text/javascript" src="release/Hodgepodge.min.js"></script>
+
 <script type="text/javascript">
     function title(content) {
         log(content, 'h4');
@@ -69,6 +64,7 @@
     logger.error('Oops, ERROR!');
     logger.fatel('F***, FATEL!');
 
+    //测试lang包
     title('Test Hodgepodge.lang');
     log('Hodgepodge.lang.copyProperties({foo: 321, bar: "hehe"}, {foo: 123}, true)');
     var newObj = Hodgepodge.lang.copyProperties({foo: 321, bar: "hehe"}, {foo: 123}, true);
@@ -77,15 +73,16 @@
     logger.setTargetDiv(langDiv);
     logger.info(Hodgepodge.debug.enumProps(newObj));
 
+    //测试math包
     title('Test Hodgepodge.math');
     log('Hodgepodge.math.getRandomNumber(3, 50)');
     log(Hodgepodge.math.getRandomNumber(3, 50));
 
+    //测试storage包
     title('Test Hodgepodge.storage');
     log('Hodgepodge.storage.setCookie("Hodgepodge", "Hodgepodge.storage-cookie")');
     Hodgepodge.storage.setCookie('Hodgepodge', '12345');
     log(Hodgepodge.storage.getCookie('Hodgepodge'));
-
 </script>
 </body>
 </html>

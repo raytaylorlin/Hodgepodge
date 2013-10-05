@@ -16,4 +16,4 @@ This lib comes from *Practical JavaScript, DOM Scripting, and Ajax Projects* Cha
 ## Practice for WHAT
 * Javascript Module/ Library
 * Git
-* TODO: Grunt
+* Grunt
