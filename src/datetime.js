@@ -26,7 +26,7 @@ var Hodgepodge = (function(hp) {
      * @return {Boolean}      是否为闰年
      */
     hp_datetime.isLeapYear = function(year) {
-        return (year % 4 === 0 && !(year % 100 === 0)) || year % 400 === 0;
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
     };
 
     return hp;

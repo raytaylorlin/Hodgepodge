@@ -10,12 +10,17 @@ module.exports = function(grunt) {
                 //用于连接的文件
                 src: ['src/*.js'],
                 //返回的JS文件位置
-                dest: 'dist/<%= pkg.name %>.js'
+                dest: 'release/<%= pkg.name %>.js'
             }
+        },
+        jshint: {
+            //定义用于检测的文件
+            files: ['gruntfile.js', 'src/*.js']
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
-    grunt.registerTask('default', ['concat']);
-}
+    grunt.registerTask('default', ['jshint', 'concat']);
+};
